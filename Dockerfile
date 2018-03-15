@@ -1,12 +1,15 @@
 FROM ubuntu
 
 # Packages installation
-RUN apt-get update && \
-	apt-get install -y \
+RUN apt-get update && apt-get install -y \
+		git curl unzip \
 		nginx \
 		php7.0-fpm \
+		php-cli \
+		php-mysql \
 		supervisor
 RUN mkdir -p /run/php
+RUN	curl https://getcomposer.org/installer | php -- --install-dir=bin --filename=composer
 
 # Cleaning
 RUN rm -rf /etc/nginx/sites-enabled/* && \
