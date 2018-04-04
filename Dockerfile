@@ -12,13 +12,13 @@ RUN mkdir -p /run/php
 RUN	curl https://getcomposer.org/installer | php -- --install-dir=bin --filename=composer
 
 # Cleaning
-RUN rm -rf /etc/nginx/sites-enabled/* && \
-    rm -rf /var/www/*
+RUN rm -rf /etc/nginx/sites-enabled/*
 
 # Configurations files
+RUN mkdir /www
 ADD conf/default.conf /etc/nginx/sites-enabled/default.conf
 ADD conf/supervisord.conf /etc/supervisord.conf
-ADD www/index.php /var/www/html/index.php
+ADD www/index.php /www/index.php
 
 # Nginx logs to Docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
