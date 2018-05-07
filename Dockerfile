@@ -4,7 +4,7 @@ FROM ubuntu
 RUN apt-get update && apt-get install -y \
 		git curl unzip \
 		nginx \
-		php7.0-fpm \
+		php-fpm \
 		php-cli \
 		php-mysql \
 		supervisor
